@@ -3,9 +3,14 @@ import re
 import numpy as np
 import pandas as pd
 
+columns = [
+        "year", "term", "subject", "number", "name", "description", "credit_hours",
+        "registration_number", "type", "type_code", "start_time", "end_time", "days_of_week"
+    ]
+
 def clean_credit_hours(credit_hours: str):
-    credit_hours = re.sub(r'[^0-9.]', ' ', char)  
-    credit_hours = cleaned_char.strip()
+    credit_hours = re.sub(r'[^0-9.]', ' ', credit_hours)  
+    credit_hours = credit_hours.strip()
     credit_hours = re.sub(r'[.,]$', '', credit_hours).split()
     if len(credit_hours) > 1:
         credit_hours = credit_hours[-1]
@@ -15,10 +20,10 @@ def clean_credit_hours(credit_hours: str):
     return float(credit_hours)
 
 
-def clean_course_data(file_path: str):
+def clean_course_data(df: pd.DataFrame):
     rows = []
     unique_type_codes = ["DIS", "LAB", "LEC", "LCD", "IND", "INT", "LBD", "ONL", "OD", "OLC", "OLB", "RES"]
-    course_df = pd.read_csv(file_path)
+    course_df = df
     course_df = course_df[
         course_df['Type Code'].isin(unique_type_codes)
     ]
@@ -66,10 +71,7 @@ def clean_course_data(file_path: str):
             "end_time": course_end_time,
             "days_of_week": course_day_of_week
         })
-    columns = [
-        "year", "term", "subject", "number", "name", "description", "credit_hours",
-        "registration_number", "type", "type_code", "start_time", "end_time", "days_of_week"
-    ]
+    
     
     return pd.DataFrame(rows, columns=columns)
 
