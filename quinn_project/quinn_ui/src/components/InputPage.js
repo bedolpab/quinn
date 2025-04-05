@@ -22,7 +22,6 @@ export default function SimpleInput() {
                     <textarea
                         ref={(curser) => {
                             if (curser) {
-                                // Set cursor to start when the element gets focus
                                 curser.addEventListener('click', () => {
                                     curser.setSelectionRange(0, 0);
                                 });
@@ -32,11 +31,9 @@ export default function SimpleInput() {
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         onClick={(e) => {
-                            // Set cursor to start on click
                             e.currentTarget.setSelectionRange(0, 0);
                         }}
                         onFocus={(e) => {
-                            // Set cursor to start on focus
                             e.currentTarget.setSelectionRange(0, 0);
                         }}
                         className="h-36 w-full text-gray-100 bg-bg-light-black border border-gray-700 rounded-lg py-4 px-4 pr-12 focus:outline-none resize-none"
