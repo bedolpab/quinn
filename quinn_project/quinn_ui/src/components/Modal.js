@@ -168,10 +168,10 @@ export default function MultiStepModal() {
         setShowMajorsSuggestions(false);
     };
     // 
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         if (step === 1) {
             setStep(2);
             return;
@@ -182,30 +182,34 @@ export default function MultiStepModal() {
             setStep(4);
             return;
         }
-    
+
         const payload = {
             user: {
-                username: `${Data.firstName.toLowerCase()}${Data.lastName.toLowerCase()}`,
+                username: `username`,
                 first_name: Data.firstName,
                 last_name: Data.lastName,
                 email: Data.email,
-                password: 'password'  
+                password: 'password'
             },
             year_entering: Data.enrollmentYear,
             expected_grad_date: `${parseInt(Data.enrollmentYear) + 4}-05-15`,
             major: Data.fieldOfStudy
         };
-    
+
         try {
-            const res = await fetch('http://localhost:8000/api/register/', {
+
+            const res = await fetch('https://localhost:8000/api/register/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
-            });
-    
+
+            }
+
+            );
+
             const result = await res.json();
             console.log('Server response:', result);
-    
+            console.log("error " + res.ok)
             if (res.ok) {
                 alert('Signup successful!');
                 setIsOpen(false);
@@ -226,7 +230,7 @@ export default function MultiStepModal() {
             alert('There was an error signing up.');
         }
     };
-    
+
 
     const handleBack = () => {
         if (step === 1) {

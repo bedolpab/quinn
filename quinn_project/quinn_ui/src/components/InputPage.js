@@ -3,6 +3,8 @@ import NameModal from './Modal';
 
 import DragAndDropModal from './Upload';
 import LoginPage from './Login';
+import Search from './AddCourse';
+import ModalButton from './CourseForm';
 
 export default function SimpleInput() {
     const [message, setMessage] = useState('');
@@ -66,6 +68,9 @@ export default function SimpleInput() {
                     </button>
                 </form>
             </div>
+            <div>
+                <ModalButton />
+            </div>
 
             {showUploadModal && (
                 <DragAndDropModal
@@ -74,5 +79,6 @@ export default function SimpleInput() {
                 />
             )}
         </div>
+
     );
 }
