@@ -1,41 +1,41 @@
-,Major,Year,Term,Course Code,Course Name,Hours
-0,Electrical Engineering,First Year,First Semester,ECE 110,ECE 110,3
-1,Electrical Engineering,First Year,Second Semester,ECE 120,ECE 120,4
-2,Electrical Engineering,First Year,First Semester,MATH 221,MATH 221,4
-3,Electrical Engineering,First Year,Second Semester,MATH 231,MATH 231,3
-4,Electrical Engineering,First Year,First Semester,CHEM 102,CHEM 102,3
-5,Electrical Engineering,First Year,Second Semester,PHYS 211,PHYS 211,4
-6,Electrical Engineering,First Year,First Semester,CHEM 103,CHEM 103,1
-7,Electrical Engineering,First Year,Second Semester,,ELECTIVE,3
-8,Electrical Engineering,First Year,First Semester,ENG 100,ENG 100,1
-9,Electrical Engineering,First Year,Second Semester,,HUM,3
-10,Electrical Engineering,First Year,First Semester,,SOC,4
-11,Electrical Engineering,Second Year,First Semester,ECE 220,ECE 220,4
-12,Electrical Engineering,Second Year,Second Semester,ECE 210,ECE 210,4
-13,Electrical Engineering,Second Year,First Semester,MATH 241,MATH 241,4
-14,Electrical Engineering,Second Year,Second Semester,MATH 285,MATH 285,3
-15,Electrical Engineering,Second Year,First Semester,PHYS 212,PHYS 212,4
-16,Electrical Engineering,Second Year,Second Semester,PHYS 213,PHYS 213,2
-17,Electrical Engineering,Second Year,First Semester,MATH 257,MATH 257,3
-18,Electrical Engineering,Second Year,Second Semester,PHYS 214,PHYS 214,2
-19,Electrical Engineering,Second Year,First Semester,,GENED,3
-20,Electrical Engineering,Second Year,Second Semester,,GENED,4
-21,Electrical Engineering,Third Year,First Semester,ECE 329,ECE 329,3
-22,Electrical Engineering,Third Year,Second Semester,ECE 313,ECE 313,3
-23,Electrical Engineering,Third Year,First Semester,ECE 385,ECE 385,3
-24,Electrical Engineering,Third Year,Second Semester,ECE 340,ECE 340,3
-25,Electrical Engineering,Third Year,First Semester,,ECE,3
-26,Electrical Engineering,Third Year,Second Semester,,ECE,3
-27,Electrical Engineering,Third Year,First Semester,,ECE,4
-28,Electrical Engineering,Third Year,Second Semester,,ECE,4
-29,Electrical Engineering,Third Year,First Semester,,GENED,3
-30,Electrical Engineering,Third Year,Second Semester,,ELECTIVE,3
-31,Electrical Engineering,Fourth Year,First Semester,,ECE,3
-32,Electrical Engineering,Fourth Year,Second Semester,ECE 445,ECE 445,4
-33,Electrical Engineering,Fourth Year,First Semester,,ECE,3
-34,Electrical Engineering,Fourth Year,Second Semester,,ECE,3
-35,Electrical Engineering,Fourth Year,First Semester,,ECE,4
-36,Electrical Engineering,Fourth Year,Second Semester,,ECE,4
-37,Electrical Engineering,Fourth Year,First Semester,,ELECTIVE,3
-38,Electrical Engineering,Fourth Year,Second Semester,,ELECTIVE,3
-39,Electrical Engineering,Fourth Year,First Semester,,GENED,3
+Major,Year,Term,Course Name
+Electrical Engineering,First Year,First Semester,ECE 110
+Electrical Engineering,First Year,Second Semester,ECE 120
+Electrical Engineering,First Year,First Semester,MATH 221
+Electrical Engineering,First Year,Second Semester,MATH 231
+Electrical Engineering,First Year,First Semester,CHEM 102
+Electrical Engineering,First Year,Second Semester,PHYS 211
+Electrical Engineering,First Year,First Semester,CHEM 103
+Electrical Engineering,First Year,Second Semester,ELECTIVE
+Electrical Engineering,First Year,First Semester,ENG 100
+Electrical Engineering,First Year,Second Semester,HUM
+Electrical Engineering,First Year,First Semester,SOC
+Electrical Engineering,Second Year,First Semester,ECE 220
+Electrical Engineering,Second Year,Second Semester,ECE 210
+Electrical Engineering,Second Year,First Semester,MATH 241
+Electrical Engineering,Second Year,Second Semester,MATH 285
+Electrical Engineering,Second Year,First Semester,PHYS 212
+Electrical Engineering,Second Year,Second Semester,PHYS 213
+Electrical Engineering,Second Year,First Semester,MATH 257
+Electrical Engineering,Second Year,Second Semester,PHYS 214
+Electrical Engineering,Second Year,First Semester,GENED
+Electrical Engineering,Second Year,Second Semester,GENED
+Electrical Engineering,Third Year,First Semester,ECE 329
+Electrical Engineering,Third Year,Second Semester,ECE 313
+Electrical Engineering,Third Year,First Semester,ECE 385
+Electrical Engineering,Third Year,Second Semester,ECE 340
+Electrical Engineering,Third Year,First Semester,ECE_ELECTIVE
+Electrical Engineering,Third Year,Second Semester,ECE_ELECTIVE
+Electrical Engineering,Third Year,First Semester,ECE_ELECTIVE
+Electrical Engineering,Third Year,Second Semester,ECE_ELECTIVE
+Electrical Engineering,Third Year,First Semester,GENED
+Electrical Engineering,Third Year,Second Semester,ELECTIVE
+Electrical Engineering,Fourth Year,First Semester,ECE_ELECTIVE
+Electrical Engineering,Fourth Year,Second Semester,ECE 445
+Electrical Engineering,Fourth Year,First Semester,ECE_ELECTIVE
+Electrical Engineering,Fourth Year,Second Semester,ECE_ELECTIVE
+Electrical Engineering,Fourth Year,First Semester,ECE_ELECTIVE
+Electrical Engineering,Fourth Year,Second Semester,ECE_ELECTIVE
+Electrical Engineering,Fourth Year,First Semester,ELECTIVE
+Electrical Engineering,Fourth Year,Second Semester,ELECTIVE
+Electrical Engineering,Fourth Year,First Semester,GENED
