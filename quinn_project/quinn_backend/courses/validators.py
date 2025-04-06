@@ -2,6 +2,11 @@ import csv
 import ast
 import datetime
 from datetime import datetime as dt
+from pathlib import Path
+import pandas as pd
+
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+PREREQS_PATH = BASE_DIR / 'data' / 'prereqs.csv'
 
 def parse_time(time_str):
     try:
@@ -21,10 +26,23 @@ class PendingCourseManager:
         self.student_record = student_record
         self.pending_courses = {}
         self.cleared_courses = {}
+        self.prereq_map = self.load_prerequisites()
+
+    def load_prerequisites(self):
+        prereq_map = {}
+        try:
+            df = pd.read_csv(PREREQS_PATH)
+            for _, row in df.iterrows():
+                course = row['Course'].strip()
+                prereqs_raw = row['Prerequisites']
+                prereqs = ast.literal_eval(prereqs_raw) if isinstance(prereqs_raw, str) else []
+                prereq_map[course] = prereqs
+        except Exception as e:
+            print(f"Error loading prerequisites: {e}")
+        return prereq_map
 
     def add_course(self, course):
         key = f"course_{course['registration_number']}"
-        # Mark course as pending by default
         course["status"] = "pending"
         course["flag_reason"] = None
         self.pending_courses[key] = course
@@ -45,12 +63,12 @@ class PendingCourseManager:
         return True, None
 
     def check_prerequisites(self, course):
-        prerequisites = course.get("prerequisites")
-        if prerequisites:
-            courses_taken = self.student_record.get("courses_taken", [])
-            for prereq in prerequisites:
-                if prereq not in courses_taken:
-                    return False, "Prerequisites not met"
+        code = course.get("subject", "") + " " + str(course.get("number", ""))
+        required_prereqs = self.prereq_map.get(code, [])
+        taken = self.student_record.get("courses_taken", [])
+        for prereq in required_prereqs:
+            if prereq not in taken:
+                return False, "Prerequisites not met"
         return True, None
 
     def check_schedule_conflict(self, course):

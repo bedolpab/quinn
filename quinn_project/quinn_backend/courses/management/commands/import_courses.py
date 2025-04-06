@@ -6,14 +6,11 @@ from pathlib import Path
 class Command(BaseCommand):
     help = 'Import courses from a CSV file.'
 
-    def add_arguements(self, parser):
-        parser.add_argument('csv_file' , type=str, help="Path to the CSV file with coures data.")
-
     def handle(self, *args, **options):
-        csv_file = options['csv_file']
-        file_path = Path(csv_file)
+        base_dir = Path(__file__).resolve().parent.parent.parent  
+        csv_file = base_dir / 'data' / 'processed_data' / 'main_courses_processed.csv'
 
-        if not file_path.exists():
+        if not csv_file.exists():
             raise CommandError(f"File {csv_file} does not exist.")
         
         try:
