@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import NameModal from './Modal';
+import LoginPage from './Login';
 
 
 export default function SimpleInput() {
@@ -14,11 +15,15 @@ export default function SimpleInput() {
     };
 
     return (
-        //text box for user input --- After output from AI
         <div className="flex flex-col items-center justify-center h-screen bg-bg-black-black">
+            <div className="absolute top-4 right-4 z-10 space-x-4">
+                <NameModal />
+                <LoginPage />
+            </div>
             <h1 className="h-1/6 text-5xl text-gray-50 font-serif">QUINN</h1>
             <div className="w-full max-w-2xl px-4">
                 <form onSubmit={handleSubmit} className="relative">
+
 
                     <textarea
                         ref={(curser) => {
@@ -41,13 +46,8 @@ export default function SimpleInput() {
                     />
                 </form>
             </div>
-            <div className='pt-4'>
-                <NameModal />
-            </div>
-            {/* <div className='pt-4'>
-                <Search />
 
-            </div> */}
+
 
         </div>
     );
