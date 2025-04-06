@@ -9,7 +9,8 @@ export default function MultiStepModal() {
         lastName: '',
         institutionName: '',
         fieldOfStudy: '',
-        enrollmentYear: ''
+        enrollmentYear: '',
+        email: ''
     });
     const [majorsSuggestions, setMajorsSuggestions] = useState([]);
     const [institutionSuggestions, setInstitutionSuggestions] = useState([]);
@@ -171,14 +172,12 @@ export default function MultiStepModal() {
         e.preventDefault();
         if (step === 1) {
             setStep(2);
-            setData(prev => ({
-                ...prev,
-                institutionName: '',
-                fieldOfStudy: '',
-                enrollmentYear: ''
-            }));
+        } else if (step === 2) {
+            setStep(3);
+        } else if (step === 3) {
+            setStep(4);
         } else {
-            console.log('Submitted:', Data);
+            console.log('Final Submission:', Data);
             setIsOpen(false);
             setStep(1);
             setData({
@@ -186,17 +185,22 @@ export default function MultiStepModal() {
                 lastName: '',
                 institutionName: '',
                 fieldOfStudy: '',
-                enrollmentYear: ''
+                enrollmentYear: '',
+                email: ''
             });
         }
     };
 
     const handleBack = () => {
-        if (step === 2) {
-            setStep(1);
-        } else {
+        if (step === 1) {
             setIsOpen(false);
+        } else {
+            setStep(step - 1);
         }
+    };
+
+    const handleEdit = (stepToEdit) => {
+        setStep(stepToEdit);
     };
 
     return (
@@ -212,7 +216,12 @@ export default function MultiStepModal() {
                 <div className="fixed inset-0 bg-bg-black-black bg-opacity-60 flex items-center justify-center p-4 w-full">
                     <div className="bg-bg-black-black rounded-xl p-8 max-w-5xl w-[90%] mx-4">
                         <div className="text-5xl md:text-6xl font-serif mb-12 text-gray-300 text-center">
-                            <h1>{step === 1 ? 'Tell us about yourself' : 'Education Information'}</h1>
+                            <h1>
+                                {step === 1 && 'Tell us about yourself'}
+                                {step === 2 && 'Education Information'}
+                                {step === 3 && 'Email Page'}
+                                {step === 4 && 'Review Your Information'}
+                            </h1>
                         </div>
 
                         <form onSubmit={handleSubmit}>
@@ -250,7 +259,7 @@ export default function MultiStepModal() {
                                             />
                                         </div>
                                     </div>
-                                ) : (
+                                ) : step === 2 ? (
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                         <div className="relative">
                                             <label htmlFor="institutionName" className="block text-xl font-medium text-gray-300 mb-4">
@@ -263,6 +272,7 @@ export default function MultiStepModal() {
                                                 value={Data.institutionName}
                                                 onChange={handleChange}
                                                 onFocus={() => setShowInstitutionSuggestions(true)}
+                                                onBlur={() => setTimeout(() => setShowInstitutionSuggestions(false), 200)}
                                                 className="w-full px-8 py-5 text-xl rounded-2xl bg-bg-light-black border border-gray-700 text-gray-100 focus:outline-none"
                                                 placeholder="Enter Institution Name"
                                                 required
@@ -292,6 +302,7 @@ export default function MultiStepModal() {
                                                 value={Data.fieldOfStudy}
                                                 onChange={handleChange}
                                                 onFocus={() => setShowMajorsSuggestions(true)}
+                                                onBlur={() => setTimeout(() => setShowMajorsSuggestions(false), 200)}
                                                 className="w-full px-8 py-5 text-xl rounded-2xl bg-bg-light-black border border-gray-700 text-gray-100 focus:outline-none"
                                                 placeholder="Enter Field Of Study"
                                                 required
@@ -329,7 +340,94 @@ export default function MultiStepModal() {
                                             </select>
                                         </div>
                                     </div>
+                                ) : step === 3 ? (
+                                    <div className="flex flex-col md:flex-row gap-8">
+                                        <div className="flex-1">
+                                            <label htmlFor="email" className="block text-xl font-medium text-gray-300 mb-4">
+                                                Email
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="email"
+                                                name="email"
+                                                value={Data.email}
+                                                onChange={handleChange}
+                                                className="w-full px-8 py-5 text-xl rounded-2xl bg-bg-light-black border border-gray-700 text-gray-100 focus:outline-none"
+                                                placeholder="Enter email@domain.edu"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                ) : (
+
+                                    <div className="space-y-8">
+                                        <div className="bg-bg-light-black p-6 rounded-2xl">
+                                            <h2 className="text-2xl font-medium text-gray-300 mb-4">Personal Information</h2>
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div>
+                                                    <p className="text-gray-400">First Name</p>
+                                                    <p className="text-gray-100 text-xl">{Data.firstName}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-gray-400">Last Name</p>
+                                                    <p className="text-gray-100 text-xl">{Data.lastName}</p>
+                                                </div>
+
+                                            </div>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleEdit(1)}
+                                                className="mt-4 text-blue-400 hover:text-blue-300"
+                                            >
+                                                Edit
+                                            </button>
+                                        </div>
+                                        <div className="bg-bg-light-black p-6 rounded-2xl">
+                                            <h2 className="text-2xl font-medium text-gray-300 mb-4">Contact Information</h2>
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                                                <div>
+                                                    <p className="text-gray-400">Email</p>
+                                                    <p className="text-gray-100 text-xl">{Data.email}</p>
+                                                </div>
+                                            </div>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleEdit(3)}
+                                                className="mt-4 text-blue-400 hover:text-blue-300"
+                                            >
+                                                Edit
+                                            </button>
+                                        </div>
+                                        =
+
+                                        <div className="bg-bg-light-black p-6 rounded-2xl">
+                                            <h2 className="text-2xl font-medium text-gray-300 mb-4">Education Information</h2>
+                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                                <div>
+                                                    <p className="text-gray-400">Institution</p>
+                                                    <p className="text-gray-100 text-xl">{Data.institutionName}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-gray-400">Field of Study</p>
+                                                    <p className="text-gray-100 text-xl">{Data.fieldOfStudy}</p>
+                                                </div>
+                                                <div>
+                                                    <p className="text-gray-400">Enrollment Year</p>
+                                                    <p className="text-gray-100 text-xl">{Data.enrollmentYear}</p>
+                                                </div>
+                                            </div>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleEdit(2)}
+                                                className="mt-4 text-blue-400 hover:text-blue-300"
+                                            >
+                                                Edit
+                                            </button>
+                                        </div>
+                                    </div>
                                 )}
+
 
                                 <div className="flex justify-between mt-16 px-4">
                                     <button
@@ -343,7 +441,7 @@ export default function MultiStepModal() {
                                         type="submit"
                                         className="h-12 w-[12%] px-4 text-lg rounded-2xl bg-gray-700 hover:bg-gray-600 text-white font-medium transition duration-200"
                                     >
-                                        {step === 1 ? 'Next' : 'Submit'}
+                                        {step === 4 ? 'Submit' : 'Next'}
                                     </button>
                                 </div>
                             </div>
