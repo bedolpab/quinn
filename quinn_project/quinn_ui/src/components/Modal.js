@@ -335,13 +335,13 @@ export default function MultiStepModal() {
                                     <button
                                         type="button"
                                         onClick={handleBack}
-                                        className="px-8 py-5 text-xl rounded-2xl bg-gray-700 hover:bg-gray-600 text-white font-medium transition duration-200"
+                                        className="h-12 w-[12%] px-4 text-md rounded-2xl bg-gray-700 hover:bg-gray-600 text-white font-medium transition duration-200"
                                     >
                                         {step === 1 ? 'Cancel' : 'Back'}
                                     </button>
                                     <button
                                         type="submit"
-                                        className="px-8 py-5 text-xl rounded-2xl bg-gray-700 hover:bg-gray-600 text-white font-medium transition duration-200"
+                                        className="h-12 w-[12%] px-4 text-lg rounded-2xl bg-gray-700 hover:bg-gray-600 text-white font-medium transition duration-200"
                                     >
                                         {step === 1 ? 'Next' : 'Submit'}
                                     </button>
