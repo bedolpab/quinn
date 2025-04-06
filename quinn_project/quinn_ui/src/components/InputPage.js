@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import NameModal from './Modal';
 
+
 export default function SimpleInput() {
     const [message, setMessage] = useState('');
 
@@ -15,7 +16,7 @@ export default function SimpleInput() {
     return (
         //text box for user input --- After output from AI
         <div className="flex flex-col items-center justify-center h-screen bg-bg-black-black">
-            <div className="h-1/6 text-5xl text-gray-50 font-serif">QUINN</div>
+            <h1 className="h-1/6 text-5xl text-gray-50 font-serif">QUINN</h1>
             <div className="w-full max-w-2xl px-4">
                 <form onSubmit={handleSubmit} className="relative">
 
@@ -40,7 +41,14 @@ export default function SimpleInput() {
                     />
                 </form>
             </div>
-            <NameModal />
+            <div className='pt-4'>
+                <NameModal />
+            </div>
+            {/* <div className='pt-4'>
+                <Search />
+
+            </div> */}
+
         </div>
     );
 }
