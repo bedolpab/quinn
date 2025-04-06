@@ -167,17 +167,44 @@ export default function MultiStepModal() {
         }));
         setShowMajorsSuggestions(false);
     };
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (step === 1) {
+        setStep(2);
+        return;
+    } else if (step === 2) {
+        setStep(3);
+        return;
+    } else if (step === 3) {
+        setStep(4);
+        return;
+    }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (step === 1) {
-            setStep(2);
-        } else if (step === 2) {
-            setStep(3);
-        } else if (step === 3) {
-            setStep(4);
-        } else {
-            console.log('Final Submission:', Data);
+    const payload = {
+        user: {
+            username: `${Data.firstName.toLowerCase()}${Data.lastName.toLowerCase()}`,
+            first_name: Data.firstName,
+            last_name: Data.lastName,
+            email: Data.email,
+            password: 'password'  
+        },
+        year_entering: Data.enrollmentYear,
+        expected_grad_date: `${parseInt(Data.enrollmentYear) + 4}-05-15`,
+        major: Data.fieldOfStudy
+    };
+
+    try {
+        const res = await fetch('http://localhost:8000/api/signup/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const result = await res.json();
+        console.log('Server response:', result);
+
+        if (res.ok) {
+            alert('Signup successful!');
             setIsOpen(false);
             setStep(1);
             setData({
@@ -188,6 +215,36 @@ export default function MultiStepModal() {
                 enrollmentYear: '',
                 email: ''
             });
+        } else {
+            alert(`Signup failed: ${result?.detail || 'Unknown error'}`);
+        }
+    } catch (error) {
+        console.error('Signup error:', error);
+        alert('There was an error signing up.');
+    }
+};
+
+
+            const result = await res.json();
+            console.log('Server response:', result);
+
+            if (res.ok) {
+                alert('Signup successful!');
+                setIsOpen(false);
+                setStep(1);
+                setData({
+                    firstName: '',
+                    lastName: '',
+                    institutionName: '',
+                    fieldOfStudy: '',
+                    enrollmentYear: ''
+                });
+            } else {
+                alert(`Signup failed: ${result?.detail || 'Unknown error'}`);
+            }
+        } catch (error) {
+            console.error('Signup error:', error);
+            alert('There was an error signing up.');
         }
     };
 
