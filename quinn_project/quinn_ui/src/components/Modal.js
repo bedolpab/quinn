@@ -167,27 +167,53 @@ export default function MultiStepModal() {
         setShowMajorsSuggestions(false);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (step === 1) {
             setStep(2);
-            setData(prev => ({
-                ...prev,
-                institutionName: '',
-                fieldOfStudy: '',
-                enrollmentYear: ''
-            }));
-        } else {
-            console.log('Submitted:', Data);
-            setIsOpen(false);
-            setStep(1);
-            setData({
-                firstName: '',
-                lastName: '',
-                institutionName: '',
-                fieldOfStudy: '',
-                enrollmentYear: ''
+            return;
+        }
+
+        const payload = {
+            user: {
+                username: `${Data.firstName.toLowerCase()}${Data.lastName.toLowerCase()}`,
+                first_name: Data.firstName,
+                last_name: Data.lastName,
+                email: `${Data.firstName.toLowerCase()}.${Data.lastName.toLowerCase()}@example.com`,
+                password: 'password' 
+            },
+            year_entering: Data.enrollmentYear,
+            expected_grad_date: `${parseInt(Data.enrollmentYear) + 4}-05-15`,
+            major: Data.fieldOfStudy
+        };
+
+        try {
+            const res = await fetch('http://localhost:8000/api/signup/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
             });
+
+            const result = await res.json();
+            console.log('Server response:', result);
+
+            if (res.ok) {
+                alert('Signup successful!');
+                setIsOpen(false);
+                setStep(1);
+                setData({
+                    firstName: '',
+                    lastName: '',
+                    institutionName: '',
+                    fieldOfStudy: '',
+                    enrollmentYear: ''
+                });
+            } else {
+                alert(`Signup failed: ${result?.detail || 'Unknown error'}`);
+            }
+        } catch (error) {
+            console.error('Signup error:', error);
+            alert('There was an error signing up.');
         }
     };
 
