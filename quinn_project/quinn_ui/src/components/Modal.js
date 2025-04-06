@@ -271,6 +271,7 @@ const handleSubmit = async (e) => {
 
             {isOpen && (
                 <div className="fixed inset-0 bg-bg-black-black bg-opacity-60 flex items-center justify-center p-4 w-full">
+
                     <div className="bg-bg-light-black rounded-xl p-8 max-w-5xl w-[90%] mx-4">
                         <div className="text-4xl md:text-5xl font-serif mb-12 text-gray-300 text-center">
                             <h1>
