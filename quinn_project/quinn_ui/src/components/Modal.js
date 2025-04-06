@@ -214,8 +214,8 @@ export default function MultiStepModal() {
 
             {isOpen && (
                 <div className="fixed inset-0 bg-bg-black-black bg-opacity-60 flex items-center justify-center p-4 w-full">
-                    <div className="bg-bg-black-black rounded-xl p-8 max-w-5xl w-[90%] mx-4">
-                        <div className="text-5xl md:text-6xl font-serif mb-12 text-gray-300 text-center">
+                    <div className="bg-bg-light-black rounded-xl p-8 max-w-5xl w-[90%] mx-4">
+                        <div className="text-4xl md:text-5xl font-serif mb-12 text-gray-300 text-center">
                             <h1>
                                 {step === 1 && 'Tell us about yourself'}
                                 {step === 2 && 'Education Information'}
@@ -361,7 +361,7 @@ export default function MultiStepModal() {
                                 ) : (
 
                                     <div className="space-y-8">
-                                        <div className="bg-bg-light-black p-6 rounded-2xl">
+                                        <div className="bg-bg-light-black p-2 rounded-2xl">
                                             <h2 className="text-2xl font-medium text-gray-300 mb-4">Personal Information</h2>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                 <div>
@@ -382,7 +382,7 @@ export default function MultiStepModal() {
                                                 Edit
                                             </button>
                                         </div>
-                                        <div className="bg-bg-light-black p-6 rounded-2xl">
+                                        <div className="bg-bg-light-black p-2 rounded-2xl">
                                             <h2 className="text-2xl font-medium text-gray-300 mb-4">Contact Information</h2>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
@@ -401,7 +401,7 @@ export default function MultiStepModal() {
                                         </div>
                                         =
 
-                                        <div className="bg-bg-light-black p-6 rounded-2xl">
+                                        <div className="bg-bg-light-black p-2 rounded-2xl">
                                             <h2 className="text-2xl font-medium text-gray-300 mb-4">Education Information</h2>
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                                 <div>
